@@ -6,21 +6,21 @@ class AzureConfig {
   static const Map<String, ProjectConfig> PROJECTS = {
     'VMS': ProjectConfig(
       defaultAssignees: ['Jackline Jeroitich', 'Miriam Wanjohi', 'Adrian Thuo'],
-      commonTags: ['VMS POrtalV!', 'VMS Mobile AppV!', 'VMS COTEX', 'VMS Api'],
+      commonTags: ['VMS POrtalV1', 'VMS Mobile AppV!', 'VMS COTEX', 'VMS Api'],
       defaultState: ['Doing', 'Done', 'To Do'],
-      commonSprints: ['Sprint 23', 'Sprint 24'],
+      commonSprints: ['Sprint/2', 'Sprint 4'],
     ),
     'Itrack': ProjectConfig(
-      defaultAssignees: ['', 'api.developer@company.com'],
-      commonTags: ['', 'api', 'server-side'],
+      defaultAssignees: ['Miriam Wanjohi', 'Jackline Jeroitich', 'Adrian Thuo'],
+      commonTags: ['Itrack Naivas', 'Itrack MyCredit', 'Itrack NCBA','Itrack Britam', 'Itrack Mobile App', 'Itrack Api'],
       defaultState: ['Doing', 'Done', 'To Do'],
-      commonSprints: ['Sprint 23', 'Sprint 24'],
+      commonSprints: ['Sprint/2', 'Sprint 3'],
     ),
     'Mobile': ProjectConfig(
-      defaultAssignees: ['mobile.lead@company.com', 'app.developer@company.com'],
+      defaultAssignees: ['Miriam Wanjohi', 'Jackline Jeroitich', 'Adrian Thuo'],
       commonTags: ['mobile', 'android', 'ios'],
-     defaultState: ['Doing', 'Done', 'To Do'],
-      commonSprints: ['Sprint 23', 'Sprint 24'],
+      defaultState: ['Doing', 'Done', 'To Do'],
+      commonSprints: ['Sprint/2', 'Sprint 4'],
     ),
   };
 }

@@ -1,10 +1,8 @@
 import 'dart:convert';
-
-import 'package:azure_bolt/config/azure_config.dart';
 import 'package:flutter/material.dart';
-
-import '../config/project_matcher.dart';
 import 'package:http/http.dart' as http;
+import '../config/azure_config.dart';
+import '../config/project_matcher.dart';
 
 class TaskCreationForm extends StatefulWidget {
   const TaskCreationForm({super.key});
@@ -15,7 +13,7 @@ class TaskCreationForm extends StatefulWidget {
 
 class TaskCreationFormState extends State<TaskCreationForm> {
   final TextEditingController _descriptionController = TextEditingController();
-  String _selectedProject = 'Frontend';
+  String _selectedProject = AzureConfig.PROJECTS.keys.first; // Initialize with a valid key
   String _selectedAssignee = '';
   List<String> _selectedTags = [];
   String _selectedSprint = '';
@@ -23,6 +21,10 @@ class TaskCreationFormState extends State<TaskCreationForm> {
 
   @override
   Widget build(BuildContext context) {
+    // Ensure _selectedProject is valid
+    if (!AzureConfig.PROJECTS.containsKey(_selectedProject)) {
+      throw Exception('Invalid project: $_selectedProject');
+    }
     final projectConfig = AzureConfig.PROJECTS[_selectedProject]!;
 
     return Scaffold(
@@ -47,9 +49,9 @@ class TaskCreationFormState extends State<TaskCreationForm> {
                 setState(() {
                   _selectedProject = ProjectMatcher.identifyProject(value);
                   // Reset selections when project changes
-                  _selectedAssignee = AzureConfig.PROJECTS[_selectedProject]!.defaultAssignees.first;
+                  _selectedAssignee = AzureConfig.PROJECTS[_selectedProject]?.defaultAssignees.first ?? '';
                   _selectedTags = [];
-                  _selectedSprint = AzureConfig.PROJECTS[_selectedProject]!.commonSprints.first;
+                  _selectedSprint = AzureConfig.PROJECTS[_selectedProject]?.commonSprints.first ?? '';
                 });
               },
             ),
@@ -69,9 +71,9 @@ class TaskCreationFormState extends State<TaskCreationForm> {
                 if (newValue != null) {
                   setState(() {
                     _selectedProject = newValue;
-                    _selectedAssignee = AzureConfig.PROJECTS[newValue]!.defaultAssignees.first;
+                    _selectedAssignee = AzureConfig.PROJECTS[newValue]?.defaultAssignees.first ?? '';
                     _selectedTags = [];
-                    _selectedSprint = AzureConfig.PROJECTS[newValue]!.commonSprints.first;
+                    _selectedSprint = AzureConfig.PROJECTS[newValue]?.commonSprints.first ?? '';
                   });
                 }
               },
